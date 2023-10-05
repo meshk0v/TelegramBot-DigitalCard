@@ -298,8 +298,6 @@ func mergeDataWithPhoto(designFileName string, userData UserData) string {
 		return ""
 	}
 
-	// Налагаем данные пользователя на фото
-	// Разместить имя и фамилию в одной строке
 	dc.DrawStringAnchored(userData.FirstName+" "+userData.LastName, 300, 500, 0.1, 0.1)
 	dc.DrawStringAnchored(userData.PhoneNumber, 300, 750, 0.1, 0.1)
 	dc.DrawStringAnchored(userData.Login, 300, 950, 0.1, 0.1)
