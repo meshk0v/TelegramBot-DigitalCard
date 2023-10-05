@@ -256,7 +256,7 @@ func handleUsernameInput(bot *tgbotapi.BotAPI, msg *tgbotapi.Message, stepData *
 	delete(stepMap, chatID)
 
 	// Наложение данных пользователя на фото
-	mergedPhotoPath := mergeDataWithPhoto(stepData.UserData.ChoiceDisegn, stepData.UserData)
+	mergedPhotoPath := mergeDataWithPhoto("1.jpg", stepData.UserData)
 	if mergedPhotoPath == "" {
 		reply := tgbotapi.NewMessage(chatID, "Произошла ошибка при наложении данных на фото.")
 		bot.Send(reply)
@@ -292,18 +292,18 @@ func mergeDataWithPhoto(designFileName string, userData UserData) string {
 
 	// Устанавливаем цвет текста и размер шрифта
 	dc.SetRGB(0, 0, 0) // черный цвет
-	err = dc.LoadFontFace("path/to/your/font.ttf", 24) // Укажите путь к файлу шрифта и размер
+	err = dc.LoadFontFace("/home/romeo/Desktop/AllMyProject/chatgpt_arsen/arial.ttf", 150) // Укажите путь к файлу шрифта и размер
 	if err != nil {
 		log.Println("Ошибка при загрузке шрифта:", err)
 		return ""
 	}
 
 	// Налагаем данные пользователя на фото
-	dc.DrawStringAnchored(userData.FirstName, 100, 100, 0.5, 0.5)
-	dc.DrawStringAnchored(userData.LastName, 100, 150, 0.5, 0.5)
-	dc.DrawStringAnchored(userData.PhoneNumber, 100, 200, 0.5, 0.5)
-	dc.DrawStringAnchored(userData.Login, 100, 250, 0.5, 0.5)
-	dc.DrawStringAnchored(userData.UTP, 100, 300, 0.5, 0.5)
+	// Разместить имя и фамилию в одной строке
+	dc.DrawStringAnchored(userData.FirstName+" "+userData.LastName, 300, 500, 0.1, 0.1)
+	dc.DrawStringAnchored(userData.PhoneNumber, 300, 750, 0.1, 0.1)
+	dc.DrawStringAnchored(userData.Login, 300, 950, 0.1, 0.1)
+	dc.DrawStringAnchored(userData.UTP, 300, 1150, 0.1, 0.1)
 
 	// Сохраняем результат в новый файл
 	resultFileName := "result_design1.jpg" // Укажите имя файла для сохранения
